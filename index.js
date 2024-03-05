@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 const authMiddleware = require("./src/middlewares/auth.middleware")
 const PORT = process.env.PORT || 3000;
 
-// const users_routes = require("./src/routes/user.route");
+const users_routes = require("./src/routes/users.route");
+const branch_routes = require("./src/routes/branches.route")
 // const routine_routes = require("./src/routes/dailyroutine.route");
 // const amdin_routes = require("./src/routes/admin.route");
 // const dept_routes = require("./src/routes/department.route");
@@ -21,8 +22,12 @@ const PORT = process.env.PORT || 3000;
 // });
 
 
-// app.use(bodyParser.json());
-// app.use("/athelecity/users",users_routes);
+app.use(bodyParser.json());
+app.use("/a",(req,res)=>{
+    res.send("Hello")
+});
+app.use("/users",users_routes);
+app.use("/branch",branch_routes)
 // app.use("/athelecity/routine",authMiddleware,routine_routes);
 // app.use("/athelecity/admin",amdin_routes);
 // app.use("/athelecity/department",authMiddleware,dept_routes);

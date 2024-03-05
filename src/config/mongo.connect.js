@@ -9,5 +9,5 @@ const connectDB = (url) => {
 module.exports = connectDB
 
 
-// MONOGDB_URL = "mongodb+srv://OmThakur:0NXUekPu2Fipi8xa@syncinventor.hpsewul.mongodb.net/SyncInventor?retryWrites=true&w=majority"
+// MONOGDB_URL = "mongodb+srv://syncinventory:DRD5fgJuGOGfvXMd@syncinventory.ay8ourj.mongodb.net/SyncInventory?retryWrites=true&w=majority&appName=SyncInventory"
 // PORT = 3000
