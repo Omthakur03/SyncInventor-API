@@ -7,16 +7,22 @@ var year = date_ob.getFullYear();
    
 var date = year + "-" + month + "-" + day;
 
-const cartSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     DateTime : {
         type : String,
         default : date
     },
-    wishlist_name : {
-        type : String
+    custName : {
+        type : String,
     },
     custPhone : {
         type : Number,
+    },
+    compName : {
+        type : String,
+    },
+    custEmail : {
+        type : String,
     },
     UserId : {
         type : String,
@@ -26,21 +32,26 @@ const cartSchema = new mongoose.Schema({
     },
     products : [
         {
-            ProdId : {
-                type : String,
-                unique : true,
-            }
+            Prodname : {
+                type : String
+            },
+            price : {
+                type : Number
+            },
+            quantity : {
+                type : Number
+            },
         }
     ],
     status : {
         type : String,
         enum: {
-            values: ["Opened", "Ordered", "Closed"],
+            values: ["Pending", "Closed", "Completed"],
             message: "{VALUE} is not supported",
           },
-        default : "Opened"
+        default : "Pending"
     }
 
 });
 
-module.exports = mongoose.model("Cart",cartSchema);
+module.exports = mongoose.model("order",orderSchema);

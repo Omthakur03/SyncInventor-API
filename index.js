@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 const users_routes = require("./src/routes/users.route");
 const branch_routes = require("./src/routes/branches.route")
+const cart_routes = require("./src/routes/cart.route")
+const order_routes = require("./src/routes/order.route")
 
 
 app.use(bodyParser.json());
@@ -17,6 +19,9 @@ app.use("/testing",(req,res)=>{
 
 app.use("/users",users_routes);
 app.use("/branch",branch_routes)
+app.use("/cart",authMiddleware,cart_routes)
+app.use("/order",authMiddleware,order_routes)
+
 const start = async () =>{
     try{
         await connectDB(process.env.MONOGDB_URL);
