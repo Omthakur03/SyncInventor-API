@@ -64,6 +64,29 @@ const getProduct = async (req,res) => {
     }
 }
 
+const deleteProduct = async (req,res) => {
+    const {_id} = req.body
+
+    const data = await Product.find({_id : _id})
+
+    if (!data.length) {
+        res.status(StatusCodes.NOT_FOUND).json({
+            success: false,
+            msg: 'Product not found',
+            data: data
+        });
+    }
+    else {
+        Product.deleteOne({_id : _id}).then(doc => {
+            res.status(StatusCodes.CREATED).json({
+                success: true,
+                msg: 'Product Deleted successfully',
+                data: doc
+            });
+        });       
+    }
+
+}
 // const updateProduct = async (req,res) => {
 
 //     const {name,id,Prodname,price,quantity,description,status} = req.body
@@ -105,4 +128,5 @@ module.exports = {
     addProduct,
     getAllProduct,
     getProduct,
+    deleteProduct,
 }
