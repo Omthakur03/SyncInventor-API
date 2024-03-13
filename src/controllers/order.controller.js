@@ -1,4 +1,5 @@
 const Order = require("../models/order.model")
+const User = require("../models/users.model")
 const Branch = require ("../models/branchs.model")
 const jwt = require("jsonwebtoken")
 const {StatusCodes} = require("http-status-codes")
@@ -91,6 +92,8 @@ const getOrder = async (req,res) => {
         })
     }
     else {
+        const user = await User.findById(data.UserId)
+        const branch = await Branch.findById(data.BranchId)
         res.status(StatusCodes.OK).json({
             success : true,
             msg : "Order Found",

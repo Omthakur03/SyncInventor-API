@@ -46,7 +46,7 @@ const getBranch = async(req,res) => {
     else {
         res.status(StatusCodes.OK).json({
             success  : true,
-            msg : "Branch created successfully",
+            msg : "Branch fetched successfully",
             data
         })
     }
