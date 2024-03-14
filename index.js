@@ -11,6 +11,7 @@ const branch_routes = require("./src/routes/branches.route")
 const cart_routes = require("./src/routes/cart.route")
 const order_routes = require("./src/routes/order.route")
 const product_routes = require("./src/routes/product.route")
+const request_routes = require("./src/routes/request.route")
 
 
 app.use(bodyParser.json());
@@ -23,6 +24,7 @@ app.use("/branch",branch_routes)
 app.use("/cart",authMiddleware,cart_routes)
 app.use("/order",authMiddleware,order_routes)
 app.use("/product",authMiddleware,product_routes)
+app.use("/request",authMiddleware,request_routes)
 
 const start = async () =>{
     try{

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+Schema=mongoose.Schema;
 
 var date_ob = new Date();
 var day = ("0" + date_ob.getDate()).slice(-2);
@@ -25,10 +26,12 @@ const orderSchema = new mongoose.Schema({
         type : String,
     },
     UserId : {
-        type : String,
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     BranchId : {
-        type : String,
+        type: Schema.Types.ObjectId,
+        ref: 'Branch'
     },
     products : [
         {

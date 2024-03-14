@@ -80,9 +80,9 @@ const updateOrder = async(req,res)=> {
 }
 
 const getOrder = async (req,res) => {
-    const {id} = req.body
+const {id} = req.body
 
-    const data = await Order.findById(id)
+    const data = await Order.findById(id).populate('UserId').populate('BranchId')
     
     if (!data){
         res.status(StatusCodes.NOT_FOUND).json({
@@ -92,8 +92,8 @@ const getOrder = async (req,res) => {
         })
     }
     else {
-        const user = await User.findById(data.UserId)
-        const branch = await Branch.findById(data.BranchId)
+        // const user = await User.findById(data.UserId)
+        // const branch = await Branch.findById(data.BranchId)
         res.status(StatusCodes.OK).json({
             success : true,
             msg : "Order Found",
