@@ -170,6 +170,25 @@ const deleteProduct = async (req, res) => {
     });
   }
 };
+
+const custCart = async (req,res) => {
+  const {phone} = req.body;
+
+  const data = await Cart.find({custPhone : phone});
+
+  if (!data) {
+    res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      msg: "Nothing to show",
+    });
+  } else {
+    res.status(StatusCodes.CREATED).json({
+      success: true,
+      msg: "here is your cart",
+      data,
+    });
+  }
+}
 module.exports = {
   CreateCart,
   getAllCart,
@@ -178,4 +197,5 @@ module.exports = {
   getCartProduct,
   updateCart,
   deleteProduct,
+  custCart
 };
