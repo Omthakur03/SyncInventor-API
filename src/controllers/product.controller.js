@@ -44,7 +44,7 @@ const getProduct = async (req, res) => {
 
   const data = await Product.findById(id);
 
-  if (!data) {
+  if (!data.length) {
     res.status(StatusCodes.NOT_FOUND).json({
       success: false,
       msg: "Product Not Found",
@@ -118,7 +118,7 @@ const getProductByName = async (req, res) => {
 
   const data = await Product.find({Prodname : name});
 
-  if (!data) {
+  if (!data.length) {
     res.status(StatusCodes.NOT_FOUND).json({
       success: false,
       msg: "Product Not Found",
