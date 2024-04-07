@@ -106,9 +106,21 @@ const getAllUser = async (req,res) => {
   }
 }
 
+const UserProfile = async (req,res) =>{
+    const {email} = req.body
+
+    const data = await User.find({email : email})
+
+    res.status(StatusCodes.OK).json({
+        msg : "Profile Fetched",
+        data : data
+    })
+}
+
 module.exports = {
     CreateUser,
     userLogin,
     forgotPassword,
-    getAllUser
+    getAllUser,
+    UserProfile
 }
