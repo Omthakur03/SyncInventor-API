@@ -66,7 +66,7 @@ const forgotPassword = async (req, res) => {
 
     // if (!email.trim()) throw new BadRequestError('Something is missing,Bad input')
 
-    const data = await User.findOne({email : email})
+    const data = await User.find({email : email})
 
     if (!data.length) {
         res.status(StatusCodes.NOT_FOUND).json({
