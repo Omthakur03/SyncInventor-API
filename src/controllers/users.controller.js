@@ -90,13 +90,20 @@ const forgotPassword = async (req, res) => {
 }
 
 const getAllUser = async (req,res) => {
-    const data = User.find();
+    const data = await User.find({});
 
-    res.status(StatusCodes.OK).json({
-        success : true,
-        msg : "All User Fetched",
-        data
+  if (!data.length) {
+    res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      msg: "Users Not Found",
     });
+  } else {
+    res.status(StatusCodes.OK).json({
+      success: true,
+      msg: "Users Found successfully",
+      data: data,
+    });
+  }
 }
 
 module.exports = {
