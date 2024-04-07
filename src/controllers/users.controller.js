@@ -89,8 +89,19 @@ const forgotPassword = async (req, res) => {
     }
 }
 
+const getAllUser = async (req,res) => {
+    const data = User.find();
+
+    res.status(StatusCodes.OK).json({
+        success : true,
+        msg : "All User Fetched",
+        data
+    });
+}
+
 module.exports = {
     CreateUser,
     userLogin,
-    forgotPassword
+    forgotPassword,
+    getAllUser
 }

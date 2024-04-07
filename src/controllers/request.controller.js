@@ -26,7 +26,9 @@ const createRequest = async (req, res) => {
 };
 
 const getAllRequest = async (req, res) => {
-  const data = await Request.find({});
+  const data = await Request.find({}).populate("UserId")
+  .populate("BranchId")
+  .populate("ProdId");;
 
   if (!data) {
     res.status(StatusCodes.NOT_FOUND).json({
