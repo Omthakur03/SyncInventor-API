@@ -112,10 +112,31 @@ const updateProduct = async (req, res) => {
       .json({ success: true, msg: "Product updated successfully", data: data });
   }
 };
+
+const getProductByName = async (req, res) => {
+  const {name} = req.body;
+
+  const data = await Product.find({Prodname : name});
+
+  if (!data) {
+    res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      msg: "Product Not Found",
+    });
+  } else {
+    res.status(StatusCodes.OK).json({
+      success: true,
+      msg: "Product Found",
+      data,
+    });
+  }
+};
+
 module.exports = {
   addProduct,
   getAllProduct,
   getProduct,
   deleteProduct,
   updateProduct,
+  getProductByName
 };
