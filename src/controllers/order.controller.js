@@ -6,16 +6,18 @@ const {StatusCodes} = require("http-status-codes")
 const {BadRequestError, NotFound, UnauthenticatedError} = ("../errors")
 
 const CreateOrder = async (req,res) => {
-    const {custName,custPhone,compName,custEmail,UserId,BranchId,products} = req.body
+    const {custName,custPhone,compAddress,custEmail,UserId,BranchId,products,paymentMode,DeliveryMode} = req.body
 
     const order = new Order({
         custName,
         custPhone,
-        compName,
+        compAddress,
         custEmail,
         UserId,
         BranchId,
-        products
+        products,
+        paymentMode,
+        DeliveryMode
     })
 
     const data = await order.save()

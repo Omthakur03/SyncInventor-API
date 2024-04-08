@@ -1,4 +1,5 @@
 const User = require("../models/users.model")
+const Branch = require("../models/branchs.model")
 const jwt = require("jsonwebtoken")
 const {StatusCodes} = require("http-status-codes")
 const {BadRequestError, NotFound, UnauthenticatedError} = ("../errors")
@@ -43,11 +44,13 @@ const userLogin = async(req,res) =>{
             const token = jwt.sign({ id, email }, process.env.JWT_TOKEN, {
                 expiresIn: '30d',
             })
+
+            var branch = await Branch.find({name : data['data']['branch']})
         
             res.status(StatusCodes.OK).json({
                 success: true,
                 msg: 'Login Successful',
-                data: { token , data},
+                data: { token , data,branch},
             })
         }
         else{

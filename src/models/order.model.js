@@ -19,10 +19,10 @@ const orderSchema = new mongoose.Schema({
     custPhone : {
         type : Number,
     },
-    compName : {
+    custEmail : {
         type : String,
     },
-    custEmail : {
+    compAddress : {
         type : String,
     },
     UserId : {
@@ -32,6 +32,20 @@ const orderSchema = new mongoose.Schema({
     BranchId : {
         type: Schema.Types.ObjectId,
         ref: 'Branch'
+    },
+    paymentMode : {
+        type : String,
+        enum: {
+            values: ["Cash", "Upi", "Card Payment"],
+            message: "{VALUE} is not supported",
+          },
+    },
+    DeliveryMode : {
+        type : String,
+        enum: {
+            values: ["Takeaway", "StoreDelivery"],
+            message: "{VALUE} is not supported",
+          },
     },
     products : [
         {
