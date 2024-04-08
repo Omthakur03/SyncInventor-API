@@ -31,7 +31,7 @@ const CreateOrder = async (req,res) => {
 
 const getAllOrder = async (req,res) => {
 
-    const data = await Order.find({})
+    const data = await Order.find({}).populate('UserId').populate('BranchId')
 
     if (!data){
         res.status(StatusCodes.NOT_FOUND).json({
