@@ -35,6 +35,9 @@ const userSchema = new mongoose.Schema({
     branch : {
         type : String,
     },
+    branchId : {
+        type : String,
+    },
 
 });
 

@@ -6,13 +6,16 @@ const {BadRequestError, NotFound, UnauthenticatedError} = ("../errors")
 
 const CreateUser = async (req,res) => {
     const {name, email, phone, password, role, branch} = req.body
+
+    const brancId = await Branch.find({name : branch})
     const user = new User({
         name,
         email,
         phone,
         password,
         role,
-        branch
+        branch,
+        brancId
     })
 
     const data = await user.save()
@@ -44,13 +47,11 @@ const userLogin = async(req,res) =>{
             const token = jwt.sign({ id, email }, process.env.JWT_TOKEN, {
                 expiresIn: '30d',
             })
-
-            var branch = await Branch.find({name : data['data']['branch']})
         
             res.status(StatusCodes.OK).json({
                 success: true,
                 msg: 'Login Successful',
-                data: { token , data,branch},
+                data: { token , data},
             })
         }
         else{
