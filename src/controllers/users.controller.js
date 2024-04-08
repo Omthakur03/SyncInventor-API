@@ -7,7 +7,7 @@ const {BadRequestError, NotFound, UnauthenticatedError} = ("../errors")
 const CreateUser = async (req,res) => {
     const {name, email, phone, password, role, branch} = req.body
 
-    const brancId = await Branch.find({name : branch})
+   
     const user = new User({
         name,
         email,
@@ -15,7 +15,6 @@ const CreateUser = async (req,res) => {
         password,
         role,
         branch,
-        brancId
     })
 
     const data = await user.save()

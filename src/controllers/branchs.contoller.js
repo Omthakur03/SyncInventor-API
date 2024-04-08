@@ -32,10 +32,35 @@ const getAllBranch = async(req, res) => {
 }
 
 const getBranch = async(req,res) => {
-    const id = req.params.id
+    // const id = req.params.id
     const {name} = req.body
 
-    const data = await Branch.findById(id)
+    // const data = await Branch.findById(id)
+
+    const branch = await Branch.findOne({name : name})
+
+    console.log(branch);
+
+    if (!branch) {
+        res.status(StatusCodes.NOT_FOUND).json({
+            success : false,
+            msg : "Branch Not Found"
+        })
+    }
+    else {
+        res.status(StatusCodes.OK).json({
+            success  : true,
+            msg : "Branch fetched successfully",
+            branch
+        })
+    }
+
+}
+
+const getBranchDetails = async(req,res) => {
+    const {name} = req.body
+
+    const branch = await Branch.findOne({name : name})
 
     if (!data) {
         res.status(StatusCodes.NOT_FOUND).json({
@@ -47,7 +72,7 @@ const getBranch = async(req,res) => {
         res.status(StatusCodes.OK).json({
             success  : true,
             msg : "Branch fetched successfully",
-            data
+            branch
         })
     }
 
@@ -57,4 +82,5 @@ module.exports = {
     createBranch,
     getBranch,
     getAllBranch,
+    getBranchDetails
 }
