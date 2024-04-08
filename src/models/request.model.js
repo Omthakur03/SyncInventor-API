@@ -35,6 +35,14 @@ const requestSchema = new mongoose.Schema({
     },
     default: "Pending",
   },
+  type : {
+    type: String,
+    enum: {
+      values: ["Update", "Remove"],
+      message: "{VALUE} is not supported",
+    },
+    default: "Update",
+  },
 });
 
 module.exports = mongoose.model("Request", requestSchema);

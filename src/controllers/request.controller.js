@@ -7,13 +7,14 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFound, UnauthenticatedError } = "../errors";
 
 const createRequest = async (req, res) => {
-  const { UserId, BranchId, ProdId, description } = req.body;
+  const { UserId, BranchId, ProdId, description,type } = req.body;
 
   const request = new Request({
     UserId,
     BranchId,
     ProdId,
     description,
+    type
   });
 
   const data = await request.save();
